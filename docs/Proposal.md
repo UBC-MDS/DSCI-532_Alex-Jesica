@@ -1,7 +1,7 @@
 Proposal
 ================
-Alex Pak and Jes Simkin
-2019-01-13
+By: Alex Pak and Jes Simkin
+2019-01-12
 
 Overview
 --------
@@ -21,20 +21,16 @@ More info on Rotten Tomatoes scoring can be found <a href="https://www.rottentom
 
 This dataset was approved by Alejandra (TA).
 
-Usage scenario & tasks
+Usage Scenario & Tasks
 ----------------------
 
 Erin is interested in exploring the representation of women in media, particularly by examining movies and using the Bechdel Test. They want to examine how movies fare with the Bechdel Test when broken down over time (year of release), by genre, and by popular score on Rotten Tomatoes (average of audience and critic score).
 
 When Erin loads the app, they see an overview figure of 206 movies, illustrating how movies are distributed by time and score, and whether the movie passes the Bechdel Test. This figure allows Erin to see if over time, more and better movies pass the Bechdel Test or not. Erin can choose to filter out movies by their Bechdel Test grade using checkboxes in the sidebar, and by hovering over a data point, Erin can see more information about that movie.
 
-In order to explore other trends, Erin can navigate to other figures by clicking on different tabs along the top of the app.
-
-By navigating to the second tab, Erin can see how many movies pass and fail the Bechdel Test over time, with the option of controlling for the range of scores displayed with a slider in the sidebar.
-
-When navigating to the third tab, Erin can compare how movies of different genres are distributed by score, and how these sets of movies do on the Bechdel Test. Genres can be selected with checkboxes in the sidebar. By hovering over a data point, Erin can see more information about that movie.
+In order to explore other trends, Erin can navigate to other figures by clicking on different tabs along the top of the app. By navigating to the second tab, Erin can see how many movies pass and fail the Bechdel Test over time, with the option of controlling for the range of scores displayed with a slider in the sidebar. When navigating to the third tab, Erin can compare how movies of different genres are distributed by score, and how these sets of movies do on the Bechdel Test. Genres can be selected with checkboxes in the sidebar. By hovering over a data point, Erin can see more information about that movie.
 
 If Erin wants to further examine the data behind a figure, for any figure and corresponding set of chosen filters, Erin can download the data in a csv format for further analysis using each tab’s ‘Download Results’ button. Also, below every figure, Erin can see how many movies have been plotted as filters are changed.
 
-App Description & sketch
+App Description & Sketch
 ------------------------
