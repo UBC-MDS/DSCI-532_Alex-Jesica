@@ -1,0 +1,35 @@
+---
+title: "Proposal"
+author: "Alex Pak and Jes Simkin"
+date: '2019-01-13'
+output: github_document
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Overview
+
+
+## Description of the Data
+
+The dataset behind our app contains movie metadata and Bechdel Test ratings for 206 movies.
+
+Our dataset is a combination of this <a href="http://www2.stat.duke.edu/~mc301/data/movies.html">dataset</a> of randomly selected movies released in the United States between 1972 and 2014, compiled by Dr.Çetinkaya-Rundel and Bechdel Test grades scraped from the <a href="https://bechdeltest.com/">Bechdel Test Movie List database</a> with this script written by <a href="https://github.com/neokt/women-dialogue-box-office/blob/master/02-bechdel-scraping.ipynb">Ting Neo</a>. 
+
+In order to explore the representation of women in the US movie industry, we will primarily be exploring trends between a movie’s score (`critics_score`, `audience_score`, and `avg_score` derived by averaging the critics and audience scores), genre, US theatre release year, and it’s Bechdel Test grade. 
+
+We’ve also included other variables in our dataset that help identify a movie and provide context that we think might interest the user including title, MPAA rating, first two leading actors from the cast, it’s imdb id, and a url to the movie’s Rotten Tomatoes page.
+
+More info on Rotten Tomatoes scoring can be found <a href="https://www.rottentomatoes.com/about">here</a> and information about the Bechdel Test grades can be found <a href="https://bechdeltest.com/">here</a>.
+
+
+This dataset was approved by Alejandra (TA).
+
+
+## Usage scenario & tasks
+
+
+## App Description & sketch
