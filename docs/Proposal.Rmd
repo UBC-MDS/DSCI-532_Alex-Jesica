@@ -1,9 +1,6 @@
 ---
 title: "Proposal"
 author: "By: Alex Pak and Jes Simkin"  
-  
-  
-date: 'Due: 2019-01-12'
 output: github_document
 
 ---

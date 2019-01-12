@@ -1,7 +1,7 @@
 Proposal
 ================
-By: Alex Pak and Jes Simkin
-Due: 2019-01-12
+By: Alex Pak and Jes Simkin,
+2019-01-12
 
 Overview
 --------
