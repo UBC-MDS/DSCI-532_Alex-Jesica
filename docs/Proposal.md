@@ -6,6 +6,16 @@ By: Alex Pak and Jes Simkin,
 Overview
 --------
 
+The “Bechdel Test” is a popular method of movie classification that aims to measure the representation and roles of females in movies. This test was popularized in 1985 by cartoonist Alison Bechdel and is as follows: 
+
+1. The movie must have at least two women
+2. They must talk to each other at least once... 
+3. About something besides a man
+
+Although these criteria seem ridiculous at first glance, only about [half](https://en.wikipedia.org/wiki/Bechdel_test) of movies actually pass the Bechdel Test. It seems to be Hollywood's belief that movies that do not pass the Bechdel Test have higher viewership and are more financially viable. 
+
+To test this belief, we will create an app that explores movies classified by the Bechdel Test. Our app will allow users to visually explore the metadata of movies that both pass and fail the Bechdel Test, in order to better visualize the Bechdel test and female representation in movie media.
+
 Description of the Data
 -----------------------
 
@@ -34,3 +44,13 @@ If Erin wants to further examine the data behind a figure, for any figure and co
 
 App Description & Sketch
 ------------------------
+
+Our app will contain 3 tabs, each visualizing a separate property of the movie metadata. The first tab will contain data of movie ratings over time, filtered by the Bechdel Test. To filter the movies by "Pass" and "Fail", a checkbox will be present. When one option is chosen, the points that are not chosen will be greyed out for extra clarity. 
+
+The second tab will contain graphs visualizing total number of movies over time, faceted by the Bechdel Test, with a filter for rating. This will provide insight into if more movies that passed the Bechdel Test were created - or less. 
+
+The third tab will contain graphs separated by genre, to explore how genre affects movies that pass or fail the Bechdel Test as well as their rating. 
+
+![](/src/mockup_page1.PNG)
+![](/src/mockup_page2.PNG)
+![](/src/mockup_page3.PNG)
