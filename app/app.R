@@ -2,14 +2,19 @@ library(shiny)
 library(tidyverse)
 library(ggiraph)
 library(htmltools)
+library(shinythemes)
 #loading data
-data <- read.csv("../data/movies_rt_bechdel.csv")
+data <- read.csv("https://raw.githubusercontent.com/jessimk/DSCI-532_Alex-Jesica/master/data/movies_rt_bechdel.csv")
+
+
+
 #setting hover css options
 tooltip_css <- "font-style:italic;opacity:0.6;color:white;padding:6px;border-radius:5px;"
 
 
 ui <- 
   fluidPage(
+
     
     titlePanel("Exploring the Bechdel Test Through Movies 🎥"),
     
@@ -89,7 +94,9 @@ server <- function(input, output) {
         geom_point() +
         ylim(0,100) +
         xlab("US Theatre Release Year")+
-        ylab("Average Rotten Tomatoes Score")
+        ylab("Average Rotten Tomatoes Score")+
+        labs(colour="Bechdel Test Grade")
+
       
       p1 <- p1 + geom_point_interactive(aes(tooltip = htmlEscape(paste0(m_title, ", ", thtr_rel_year), TRUE)))
       
@@ -104,7 +111,9 @@ server <- function(input, output) {
         ylim(0,100) +
         scale_alpha_discrete(range=c(0.10, 1)) + 
         xlab("US Theatre Release Year")+
-        ylab("Average Rotten Tomatoes Score") 
+        ylab("Average Rotten Tomatoes Score")+
+        labs(colour="Bechdel Test Grade")
+
       
       p2 <- p2 + geom_point_interactive(aes(tooltip = htmlEscape(paste0(m_title, ", ", thtr_rel_year), TRUE)))
       
@@ -119,7 +128,9 @@ server <- function(input, output) {
         ylim(0,100) +
         scale_alpha_discrete(range=c(1, 0.10)) + 
         xlab("US Theatre Release Year")+
-        ylab("Average Rotten Tomatoes Score")
+        ylab("Average Rotten Tomatoes Score") +
+        labs(colour="Bechdel Test Grade")
+
       
       p3 <- p3 + geom_point_interactive(aes(tooltip = htmlEscape(paste0(m_title, ", ", thtr_rel_year), TRUE)))
       
@@ -184,7 +195,8 @@ server <- function(input, output) {
       facet_grid(~bechdel) +
       ylim(0,25) +
       xlab("US Theatre Release Year")+
-      ylab("Count")
+      ylab("Count") +
+      labs(colour="Bechdel Test Grade")
       
   })
   
@@ -194,14 +206,22 @@ server <- function(input, output) {
   
   output$plot3 <- renderPlot({
     
-    filtered_data3() %>%
+    if (is.null(input$typeInput)) {
+      return(NULL)
+    }
+    
+    else {
+      filtered_data3() %>%
       ggplot(aes(bechdel, avg_score, colour=bechdel)) +
       geom_jitter() +
       facet_wrap(~genre, ncol = 2) +
       ylim(0,100)+
       xlab("Bechdel Test Grade")+
-      ylab("Average Rotten Tomatoes Score")
-  })
+      ylab("Average Rotten Tomatoes Score") +
+      labs(colour="Bechdel Test Grade")
+  
+    }
+    })
   
   output$typeSelectOutput <- renderUI({
     
