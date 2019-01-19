@@ -3,6 +3,7 @@ library(tidyverse)
 library(ggiraph)
 library(htmltools)
 library(shinythemes)
+
 #loading data
 data <- read.csv("https://raw.githubusercontent.com/jessimk/DSCI-532_Alex-Jesica/master/data/movies_rt_bechdel.csv")
 
