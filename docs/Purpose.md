@@ -32,17 +32,17 @@ We set up three types of interactive functionality on this tab:
 
 We wanted to give the user the ability to filter by Average Rotten Tomaotes score range. Perhaps the user is interested in seeing only movies that have high scores and their respective pass/fail gradings. Using a slider input is an inuitive choice for allowing the user to select a score range.
 
-By checking off the “Pass” box, only the movies that pass the Bechdel Test are highlighted on the graph. Our goal with this functionality was to allow the user a more specific view of only the movies that pass, or the movies that fail. We decided to use transparencies here so the user can still see the data as whole and maintain context.
+By checking off the “Pass” box, only the movies that pass the Bechdel Test are highlighted on the graph. Our goal with this functionality was to allow the user a more specific view of only the movies that pass, or the movies that fail. We decided to use the adjustment of transparency here so the user can primarily select a focus, yet still see the data as whole and maintain context.
 
 If the user is interested in a particular movie, they can hover over a data point to find out its title and release year. The tooltip hover functionality allows the user to identify each data point as a specific movie, in turn allowing for more context. We decided to display both movie name and title, as these two pieces of information allow the user to uniqely identify the movie.
 
 If we only consider movies that received a Rotten Tomatoes score above 50, we discover that the movie ratings of watchable movies do not seem to trend upward over time. In fact, it seems to trend slightly downward.
 
-Our initial feeling was that over time, the movies that pass the Bechdel Test would increase in ratings.  By interacting with the filters on the left, we can see if our guess was true. 
+Our initial feeling was that over time, the movies that pass the Bechdel Test would increase in ratings. By interacting with the filters on the left, we can see if our guess was true. 
  
 ![](/src/screen2.PNG)
 
-We chose to add a 'Download Results' button on this tab and others, to allow the user to save the filtered results for further analysis. This provides our app with a level of transparency and accountibility, and allows the user to explore the data beyond our app. 
+We chose to add a 'Download Results' button on this tab and all other tabs, to allow the user to save the filtered results for further analysis. This provides our app with a level of transparency and accountibility, and allows the user to explore the data beyond our app. 
 
 If we only consider movies that received a Rotten Tomatoes score above 50, we discover that the movie ratings of watchable movies do not seem to trend upward over time. In fact, it seems to trend slightly downward.
 
@@ -66,11 +66,11 @@ The last tab allows for further exploration by faceting the data by genre. To ga
 
 ![](/src/screen5.PNG)
 
-For example, by choosing the relevant genres on the left from an input box with a dropdown list, a grid of comparisons can be created. We wanted to allow the user to select which genres to spcifically look at. We selected four genres to be displayed by default to differentiate this view from the previous tab which was a binary view (facetted by pass/fail), and to emphasize the possibility of genre choices. 
+For example, by choosing the relevant genres on the left from an input box with a dropdown list, a grid of comparisons can be created. We wanted to allow the user to select which genres to specifically look at. We selected four genres to be displayed by default to differentiate this view from the previous tab which was a binary view (facetted by pass/fail), and to emphasize the possibility of genre choices. 
 
 The resulting graphs shows that despite the drastic difference in genre, the number of movies that pass or fail the Bechdel Test seems to be generally even. 
 
-The user can also see scoring trends per genre. For example, it seems like 'Action & Adventure' movies that pass the Bechdel Test, aren't scored as high than those that fail. On the other hand, most other genres are distributed similarily in terms of pass and fail groups by score. This raises many questions to for the user to explore further on the topic of the representation of women in movies, including for example, the possibility of sexism embedded in average Rotten Tomatoes scores.
+The user can also see scoring trends per genre. For example, it appears that 'Action & Adventure' movies that pass the Bechdel Test, aren't scored as high than those that fail. On the other hand, most other genres are score similarily in both pass and fail groups. This raises many questions for the user to explore further on the topic of the representation of women in movies, including for example, the possibility of sexism embedded in average Rotten Tomatoes scores.
 
 ![](/src/screen7.png)
 
