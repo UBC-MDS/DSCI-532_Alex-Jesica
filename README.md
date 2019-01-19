@@ -15,3 +15,4 @@ In this directory you'll find:
 
 ## <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica/tree/master/app">App</a>
 - Shiny App file `App.r`
+- The app lives online <a href="https://pakalexh.shinyapps.io/Bechdel_Test/"> here </a>
