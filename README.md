@@ -5,7 +5,7 @@ In this directory you'll find:
 ## <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica/tree/master/docs">Documents</a>
 
 - <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica/blob/master/docs/Proposal.md">Milestone 1: Proposal 🍿</a>
-- <a href="https://github.com/pak-alex/DSCI-532_Alex-Jesica/blob/master/docs/Purpose.md">Milestone 2: Purpose & Function</a>
+- <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica/blob/master/docs/Purpose.md">Milestone 2: Purpose & Function</a>
 
 ## <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica/tree/master/data">Data</a>
 
@@ -15,3 +15,4 @@ In this directory you'll find:
 
 ## <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica/tree/master/app">App</a>
 - Shiny App file `App.r`
+- The app lives online <a href="https://pakalexh.shinyapps.io/Bechdel_Test/"> here </a>
