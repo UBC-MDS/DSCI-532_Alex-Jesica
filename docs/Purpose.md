@@ -66,10 +66,11 @@ The last tab allows for further exploration by faceting the data by genre. To ga
 
 ![](/src/screen5.PNG)
 
-For example, by choosing the relevant genres on the left from a dropdown list, a side by side comparison of the Action & Adventure and Drama genres can be created. The resulting graphs shows that despite the drastic difference in genre, the number of movies that pass or fail the Bechdel Test seems to be generally even. 
+For example, by choosing the relevant genres on the left from an input box with a dropdown list, a grid of comparisons can be created. We wanted to allow the user to select which genres to spcifically look at. We selected four genres to be displayed by default to differentiate this view from the previous tab which was a binary view (facetted by pass/fail), and to emphasize the possibility of genre choices. 
+
+The resulting graphs shows that despite the drastic difference in genre, the number of movies that pass or fail the Bechdel Test seems to be generally even. 
 
 The user can also see scoring trends per genre. For example, it seems like 'Action & Adventure' movies that pass the Bechdel Test, aren't scored as high than those that fail. On the other hand, most other genres are distributed similarily in terms of pass and fail groups by score. This raises many questions to for the user to explore further on the topic of the representation of women in movies, including for example, the possibility of sexism embedded in average Rotten Tomatoes scores.
-
 
 ![](/src/screen7.PNG)
 
