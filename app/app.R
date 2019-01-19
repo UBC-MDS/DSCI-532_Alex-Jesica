@@ -96,7 +96,10 @@ server <- function(input, output) {
         ylim(0,100) +
         xlab("US Theatre Release Year")+
         ylab("Average Rotten Tomatoes Score")+
-        labs(colour="Bechdel Test Grade")
+        labs(colour="Bechdel Test Grade")+
+        theme(
+          text = element_text(family = "")
+        )
 
       
       p1 <- p1 + geom_point_interactive(aes(tooltip = htmlEscape(paste0(m_title, ", ", thtr_rel_year), TRUE)))
@@ -113,7 +116,11 @@ server <- function(input, output) {
         scale_alpha_discrete(range=c(0.10, 1)) + 
         xlab("US Theatre Release Year")+
         ylab("Average Rotten Tomatoes Score")+
-        labs(colour="Bechdel Test Grade")
+        labs(colour="Bechdel Test Grade")+
+        guides(alpha=FALSE)+
+        theme(
+          text = element_text(family = "")
+        )
 
       
       p2 <- p2 + geom_point_interactive(aes(tooltip = htmlEscape(paste0(m_title, ", ", thtr_rel_year), TRUE)))
@@ -130,7 +137,11 @@ server <- function(input, output) {
         scale_alpha_discrete(range=c(1, 0.10)) + 
         xlab("US Theatre Release Year")+
         ylab("Average Rotten Tomatoes Score") +
-        labs(colour="Bechdel Test Grade")
+        labs(colour="Bechdel Test Grade")+
+        guides(alpha=FALSE)+
+        theme(
+          text = element_text(family = )
+        )
 
       
       p3 <- p3 + geom_point_interactive(aes(tooltip = htmlEscape(paste0(m_title, ", ", thtr_rel_year), TRUE)))
