@@ -1,4 +1,4 @@
-title,thtr_rel_year,bechdel,genre,avg_score,critics_score,audience_score,rt_url,mpaa_rating,actor1,actor2,top200_box,imdb_id
+m_title,thtr_rel_year,bechdel,genre,avg_score,critics_score,audience_score,rt_url,mpaa_rating,actor1,actor2,top200_box,imdb_id
 Waiting for Guffman,1996,PASS,Comedy,91,91,91,//www.rottentomatoes.com/m/waiting_for_guffman/,R,Christopher Guest,Catherine O'Hara,no,tt0118111
 The Age of Innocence,1993,PASS,Drama,78,80,76,//www.rottentomatoes.com/m/age_of_innocence/,PG,Daniel Day-Lewis,Michelle Pfeiffer,no,tt0106226
 Burn After Reading,2008,FAIL,Drama,71,78,64,//www.rottentomatoes.com/m/burn_after_reading/,R,George Clooney,Frances McDormand,no,tt0887883

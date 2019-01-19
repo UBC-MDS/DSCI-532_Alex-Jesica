@@ -1,6 +1,12 @@
 library(shiny)
 library(tidyverse)
+library(ggiraph)
+library(htmltools)
+#loading data
 data <- read.csv("../data/movies_rt_bechdel.csv")
+#setting hover css options
+tooltip_css <- "font-style:italic;opacity:0.6;color:white;padding:6px;border-radius:5px;"
+
 
 ui <- 
   fluidPage(
@@ -13,6 +19,8 @@ ui <-
       tabPanel("Plot 1",
                sidebarLayout(
                  sidebarPanel(
+                   h4(textOutput("q1")),
+                   br(),
                    sliderInput("scoreInput1", 
                                "Average Rotten Tomatoes Score:",
                                min = 0, max = 100, value = c(0, 100)),
@@ -28,13 +36,15 @@ ui <-
                    downloadButton("download1", "Download Results")),
                  
                  mainPanel(
-                   plotOutput("plot1")))),
+                   ggiraphOutput("plot1")))),
       
       
       #Second Tab & Plot    
       tabPanel("Plot 2",
                sidebarLayout(
                  sidebarPanel(
+                   h4(textOutput("q2")),
+                   br(),
                    sliderInput("scoreInput2",
                                "Average Rotten Tomatoes Score:",
                                min = 0, max = 100, value = c(0,100)),
@@ -47,6 +57,8 @@ ui <-
       tabPanel("Plot 3",
                sidebarLayout(
                  sidebarPanel(
+                   h4(textOutput("q3")),
+                   br(),
                    uiOutput("typeSelectOutput"),
                    downloadButton("download3", "Download Results")),
                  
@@ -70,32 +82,65 @@ server <- function(input, output) {
              avg_score < input$scoreInput1[2])
   })
   
-  output$plot1 <- renderPlot({
+  output$plot1 <- renderggiraph({
     if (is.null(input$pfCheckBox) | length(input$pfCheckBox) == 2){
-      filtered_data1() %>%
+      p1 <- filtered_data1() %>%
         ggplot(aes(thtr_rel_year, avg_score, colour=bechdel)) +
         geom_point() +
         ylim(0,100) +
         xlab("US Theatre Release Year")+
         ylab("Average Rotten Tomatoes Score")
+      
+      p1 <- p1 + geom_point_interactive(aes(tooltip = htmlEscape(paste0(m_title, ", ", thtr_rel_year), TRUE)))
+      
+      p1 <- girafe(code = print(p1))
+      
+      girafe_options(p1, opts_tooltip(css = tooltip_css, use_fill=TRUE))
+      
     } else if (length(input$pfCheckBox) == 1 & input$pfCheckBox == "boxPass"){
-      filtered_data1() %>%
+      p2 <- filtered_data1() %>%
         ggplot(aes(thtr_rel_year, avg_score, colour=bechdel, alpha = bechdel)) +
         geom_point() +
         ylim(0,100) +
-        scale_alpha_discrete(range=c(0.25, 1)) + 
+        scale_alpha_discrete(range=c(0.10, 1)) + 
         xlab("US Theatre Release Year")+
-        ylab("Average Rotten Tomatoes Score")      
+        ylab("Average Rotten Tomatoes Score") 
+      
+      p2 <- p2 + geom_point_interactive(aes(tooltip = htmlEscape(paste0(m_title, ", ", thtr_rel_year), TRUE)))
+      
+      p2 <- girafe(code = print(p2))
+      
+      girafe_options(p2, opts_tooltip(css = tooltip_css, use_fill=TRUE))
+      
     } else {
-      filtered_data1() %>%
+      p3 <- filtered_data1() %>%
         ggplot(aes(thtr_rel_year, avg_score, colour=bechdel, alpha = bechdel)) +
         geom_point() +
         ylim(0,100) +
-        scale_alpha_discrete(range=c(1, 0.25)) + 
+        scale_alpha_discrete(range=c(1, 0.10)) + 
         xlab("US Theatre Release Year")+
-        ylab("Average Rotten Tomatoes Score")   
+        ylab("Average Rotten Tomatoes Score")
+      
+      p3 <- p3 + geom_point_interactive(aes(tooltip = htmlEscape(paste0(m_title, ", ", thtr_rel_year), TRUE)))
+      
+      p3 <- girafe(code = print(p3))
+      
+      girafe_options(p3, opts_tooltip(css = tooltip_css, use_fill=TRUE))
+      
     }
     
+  })
+  
+  output$q1 <- renderText({
+    "Over time, do more and better movies pass the Bechdel Test?"
+  })
+  
+  output$q2 <- renderText({
+    "How many movies pass the Bechdel Test per year? Are they any good?"
+  })
+  
+  output$q3 <- renderText({
+    "In terms of passing the Bechdel Test, does genre matter?"
   })
   
   output$summaryText1.1 <- renderText({
@@ -140,6 +185,7 @@ server <- function(input, output) {
       ylim(0,25) +
       xlab("US Theatre Release Year")+
       ylab("Count")
+      
   })
   
   #Plot 3
