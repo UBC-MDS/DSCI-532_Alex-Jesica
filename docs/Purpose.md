@@ -72,6 +72,6 @@ The resulting graphs shows that despite the drastic difference in genre, the num
 
 The user can also see scoring trends per genre. For example, it seems like 'Action & Adventure' movies that pass the Bechdel Test, aren't scored as high than those that fail. On the other hand, most other genres are distributed similarily in terms of pass and fail groups by score. This raises many questions to for the user to explore further on the topic of the representation of women in movies, including for example, the possibility of sexism embedded in average Rotten Tomatoes scores.
 
-![](/src/screen7.PNG)
+![](/src/screen7.png)
 
 At the project outset, the goal we set out to achieve was to gain deeper insight into the Bechdel Test and the representation of women in movies, by creating clear visualizations of movie gradings and rating over time, and by score. We wanted to provide intuitive filters for each visualization such that the user could focus on drawing conclusions from the data, rather than waste time figuring out what the visualizations represented. Throughout app development, the goal has not changed; in fact, the goal became clearer as time went on. After cleaning the data and creating the initial visualizations, we realized that we wanted to accomplish more. With more data, our app could provide an even broader view of movie ratings and the Bechdel Test.  
