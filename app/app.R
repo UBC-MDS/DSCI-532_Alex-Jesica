@@ -3,6 +3,7 @@ library(tidyverse)
 library(ggiraph)
 library(htmltools)
 library(shinythemes)
+library(reshape2)
 
 #loading data
 data <- read.csv("https://raw.githubusercontent.com/jessimk/DSCI-532_Alex-Jesica/master/data/movies_rt_bechdel.csv")
@@ -22,7 +23,7 @@ ui <-
     tabsetPanel(
       
       #First Tab & Plot        
-      tabPanel("Plot 1",
+      tabPanel("Plot 1 - Ratings over Time",
                sidebarLayout(
                  sidebarPanel(
                    h4(textOutput("q1")),
@@ -46,7 +47,7 @@ ui <-
       
       
       #Second Tab & Plot    
-      tabPanel("Plot 2",
+      tabPanel("Plot 2 - Releases over Time",
                sidebarLayout(
                  sidebarPanel(
                    h4(textOutput("q2")),
@@ -60,16 +61,19 @@ ui <-
                    plotOutput("plot2")))),
       
       #Third Tab & Plot  
-      tabPanel("Plot 3",
+      tabPanel("Plot 3 - Ratings per Genre",
                sidebarLayout(
                  sidebarPanel(
                    h4(textOutput("q3")),
                    br(),
                    uiOutput("typeSelectOutput"),
+                   checkboxGroupInput("pfCheckBox2", "Filter by Bechdel Test:",
+                                      c("Pass" = "boxPass2",
+                                        "Fail" = "boxFail2")),
                    downloadButton("download3", "Download Results")),
                  
                  mainPanel(
-                   plotOutput("plot3"))))
+                   ggiraphOutput("plot3"))))
     ))
 
 
@@ -171,6 +175,8 @@ server <- function(input, output) {
     
     if (is.null(movies1)) {
       movies1 <- 0
+      movies1PercentPass <- 0
+      movies1PercentFail <- 0
     }
     paste0("We found ", movies1, " movies.")
   })
@@ -186,61 +192,115 @@ server <- function(input, output) {
       filter(bechdel == "FAIL") %>% 
       nrow()
     
+    movies1PercentPass <- round((movies1_pass/movies1) * 100, 2)
+    movies1PercentFail <- round((movies1_fail/movies1) * 100, 2)
+    
+    
     if (is.null(movies1)) {
       movies1 <- 0
     }
-    paste0(movies1_pass,
-           " pass the Bechdel Test and ",
-           movies1_fail,
+    paste0(movies1PercentPass, "% (",movies1_pass, " movies)",
+           " pass the Bechdel Test and ", 
+           movies1PercentFail, "% (", movies1_fail, " movies)",
            " fail.")
   })
   
   #Plot 2
   filtered_data2 <- reactive({ data %>%
-      filter(avg_score > input$scoreInput2[1], avg_score < input$scoreInput2[2])})
+      filter(avg_score > input$scoreInput2[1], avg_score < input$scoreInput2[2]) %>%
+      select(thtr_rel_year, bechdel)})
   
   output$plot2 <- renderPlot({
     
-    filtered_data2() %>%
-      ggplot(aes(thtr_rel_year, colour=bechdel)) +
-      geom_histogram(bins=10) +
-      facet_grid(~bechdel) +
+    melt(filtered_data2()) %>%
+      ggplot(aes(value, fill=bechdel)) +
+      geom_histogram(bins=10, position = 'dodge') +
       ylim(0,25) +
-      xlab("US Theatre Release Year")+
+      xlab("US Theatre Rele56ase Year")+
       ylab("Count") +
-      labs(colour="Bechdel Test Grade")
+      labs(fill="Bechdel Test Grade")
       
   })
   
   #Plot 3
-  filtered_data3 <- reactive({ data %>%
-      filter(genre %in% input$typeInput) })
-  
-  output$plot3 <- renderPlot({
-    
-    if (is.null(input$typeInput)) {
-      return(NULL)
-    }
-    
-    else {
-      filtered_data3() %>%
-      ggplot(aes(bechdel, avg_score, colour=bechdel)) +
-      geom_jitter() +
-      facet_wrap(~genre, ncol = 2) +
-      ylim(0,100)+
-      xlab("Bechdel Test Grade")+
-      ylab("Average Rotten Tomatoes Score") +
-      labs(colour="Bechdel Test Grade")
-  
-    }
-    })
-  
   output$typeSelectOutput <- renderUI({
     
-    selectInput("typeInput", "Product type",
+    selectInput("typeInput", "Genre",
                 sort(unique(data$genre)),
                 multiple = TRUE,
                 selected = c("Drama", "Comedy", "Action & Adventure", "Mystery & Suspense"))})
+
+  filtered_data3 <- reactive({ data %>%
+      filter(genre %in% input$typeInput) })
+  
+  output$plot3 <- renderggiraph({
+    
+    if (is.null(input$pfCheckBox2) | length(input$pfCheckBox2) == 2){
+      genre_plot1 <- filtered_data3() %>%
+        ggplot(aes(genre, avg_score, colour=bechdel)) +
+        geom_jitter(aes(genre, avg_score, colour=bechdel), filtered_data3(), 
+                    position = position_jitter(width = 0.35, seed=100)) +
+        ylim(0,100) +
+        xlab("Genre")+
+        ylab("Average Rotten Tomatoes Score") +
+        labs(colour="Bechdel Test Grade") + 
+        theme(
+          text = element_text(family = "")
+        )
+      
+      genre_plot1 <- genre_plot1 + 
+        geom_point_interactive(aes(tooltip = htmlEscape(paste0(m_title, ", ", thtr_rel_year), TRUE)))
+      
+      genre_plot1 <- girafe(code = print(genre_plot1))
+      
+      girafe_options(genre_plot1, opts_tooltip(css = tooltip_css, use_fill=TRUE))
+      
+    } else if (length(input$pfCheckBox2) == 1 & input$pfCheckBox2 == "boxPass2"){
+      genre_plot2 <- filtered_data3() %>%
+        ggplot(aes(genre, avg_score, colour=bechdel, alpha = bechdel)) +
+        geom_jitter(aes(genre, avg_score, colour=bechdel), filtered_data3(), 
+                    position = position_jitter(width = 0.35, seed=100)) +
+        scale_alpha_discrete(range=c(0.10, 1)) +
+        ylim(0,100) +
+        xlab("Genre")+
+        ylab("Average Rotten Tomatoes Score") +
+        labs(colour="Bechdel Test Grade") + 
+        guides(alpha=FALSE) +
+        theme(
+          text = element_text(family = "")
+        )
+      
+      genre_plot2 <- genre_plot2 + 
+        geom_point_interactive(aes(tooltip = htmlEscape(paste0(m_title, ", ", thtr_rel_year), TRUE)))
+      
+      genre_plot2 <- girafe(code = print(genre_plot2))
+      
+      girafe_options(genre_plot2, opts_tooltip(css = tooltip_css, use_fill=TRUE))
+      
+    } else {
+      genre_plot3 <- filtered_data3() %>%
+        ggplot(aes(genre, avg_score, colour=bechdel, alpha = bechdel)) +
+        geom_jitter(aes(genre, avg_score, colour=bechdel), filtered_data3(), 
+                    position = position_jitter(width = 0.35, seed=100)) +
+        scale_alpha_discrete(range=c(1, 0.10)) +
+        ylim(0,100) +
+        xlab("Genre")+
+        ylab("Average Rotten Tomatoes Score") +
+        labs(colour="Bechdel Test Grade") + 
+        guides(alpha=FALSE) +
+        theme(
+          text = element_text(family = "")
+        )
+      
+      genre_plot3 <- genre_plot3 + geom_point_interactive(aes(tooltip = htmlEscape(paste0(m_title, ", ", thtr_rel_year), TRUE)))
+      
+      genre_plot3 <- girafe(code = print(genre_plot3))
+      
+      girafe_options(genre_plot3, opts_tooltip(css = tooltip_css, use_fill=TRUE))
+      
+    }
+    
+  })
   
   #Downoad Button for Tab 1
   output$download1 <- downloadHandler(
