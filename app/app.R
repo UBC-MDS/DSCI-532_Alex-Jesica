@@ -44,8 +44,10 @@ ui <-
                    ),
                    
                    column(5,
-                     span("The Bechdel Test is a way to measure the representation of women in media. Learn more about the test ", a(href = "https://bechdeltest.com/", "here.")),
-                     br(), br(),
+                     span("The Bechdel Test is a way to measure the representation of women in media. Learn more about the test and how movies are graded ", a(href = "https://bechdeltest.com/", "here.")),
+                     br(),br(), 
+                     span("We have averaged Rotten Tomatoes audience and critic scores. Learn more about Rotten Tomatoes scores", a(href = "https://www.rottentomatoes.com/about", "here.")),
+                     br(),br(),
                      span("Data sources:", 
                           tags$a("Movies Dataset by Dr. Çetinkaya-Rundel",
                                  href = "http://www2.stat.duke.edu/~mc301/data/movies.html"),
@@ -53,10 +55,10 @@ ui <-
                           tags$a("Bechdel Test Movie List",
                                  href = "https://bechdeltest.com/")
                           ),
-                     br(), br(),
-                     span("Created by", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "Alex Pak and Jes Simkin")),
                      br(),
-                     span("Code", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "on GitHub"))
+                     span("App by", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "Alex Pak and Jes Simkin")),
+                     br(),
+                     span("Code", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "on GitHub 🍿"))
                    ))
                  
                  )),
@@ -88,7 +90,7 @@ ui <-
                           br(), br(),
                           span("Created by", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "Alex Pak and Jes Simkin")),
                           br(),
-                          span("Code", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "on GitHub"))
+                          span("Code", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "on GitHub 🍿"))
                           ))
                )),
       
@@ -122,7 +124,7 @@ ui <-
                         br(), br(),
                         span("Created by", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "Alex Pak and Jes Simkin")),
                         br(),
-                        span("Code", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "on GitHub"))
+                        span("Code", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "on GitHub 🍿"))
                  )
                )))
     ))
@@ -268,8 +270,12 @@ server <- function(input, output) {
       labs(fill="Bechdel Test \n Grade")+
       scale_fill_manual(values = rev(brewer.pal(n=3, "Set2"))) + 
       theme(
-        plot.title = element_text(hjust = 0.5, face = 'bold', size = 17) 
-      )
+        text = element_text(family = ""),
+        plot.title = element_text(hjust = 0.5, face = 'bold', size = 17),
+        axis.text = element_text(size = 14),
+        axis.title = element_text(size = 14),
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 14)) 
   })
   
   #Plot 3
@@ -299,9 +305,11 @@ server <- function(input, output) {
         scale_color_manual(values = rev(brewer.pal(n=3, "Set2")))+
         theme(
           text = element_text(family = ""),
-          plot.title = element_text(hjust = 0.5, face = 'bold', size = 17)
-          
-        )
+          plot.title = element_text(hjust = 0.5, face = 'bold', size = 17),
+          axis.text = element_text(size = 14),
+          axis.title = element_text(size = 14),
+          legend.text = element_text(size = 12),
+          legend.title = element_text(size = 14)) 
       
       
       
@@ -321,10 +329,11 @@ server <- function(input, output) {
         ggtitle("In terms of passing the Bechdel Test, does genre matter?")+
         theme(
           text = element_text(family = ""),
-          plot.title = element_text(hjust = 0.5, face = 'bold', size = 17)
-          
-        )
-      
+          plot.title = element_text(hjust = 0.5, face = 'bold', size = 17),
+          axis.text = element_text(size = 14),
+          axis.title = element_text(size = 14),
+          legend.text = element_text(size = 12),
+          legend.title = element_text(size = 14)) 
       
       
     } else {
@@ -340,13 +349,16 @@ server <- function(input, output) {
         labs(colour="Bechdel Test \nGrade") +
         scale_color_manual(values = rev(brewer.pal(n=3, "Set2")))+
         guides(alpha=FALSE) +
-        ggtitle("In terms of passing the Bechdel Test, does genre matter?")+
         theme(
           text = element_text(family = ""),
-          plot.title = element_text(hjust = 0.5, face = 'bold', size = 17) 
+          plot.title = element_text(hjust = 0.5, face = 'bold', size = 17),
+          axis.text = element_text(size = 14),
+          axis.title = element_text(size = 14),
+          legend.text = element_text(size = 12),
+          legend.title = element_text(size = 14)) 
           
           
-        )}
+        }
   })
   
   #Downoad Button for Tab 1
