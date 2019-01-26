@@ -3,9 +3,13 @@ Milestone 3: Reflection
 
 #### Reflection on the usefulness of the feedback we received.
 
-The feedback session was a valuable opportunity to see our app in action and to receive valuable feedback. Our app will most certainly be better because of the generous feedback we received from our peers. Overall, our peers found that our app was straightforward to use and our peers enjoyed our app's topic and dataset.
+The feedback session was a valuable opportunity to see our app in action and receive valuable information. Our app will most certainly be better because of the generous feedback we received from our peers. Overall, our peers found that our app was straightforward to use and that the topic was enjoyable. However, they also found that we could improve on its level of clarity. 
 
-Across the board, our peers wanted more information. We heard that more infromation was needed about the Bechdel Test as well as our data. This made a lot of sense to us-- our app was missing context. In turn, we'll be lining up this change for the next round of updates. The one thing in terms of adding more information that we'll be keeping on the wishlist is adding more movie metadata to the hover boxes. We had some technical trouble with adding line breaks in the hover boxes, and given our time constraints this is more of a 'nice to have', than a structural piece we need.
+This was further solidified by our experience being a "fly-on-the-wall". When going through our peers' apps without guidance, we noticed that having a clear outline and goal to an app made it much easier to understand the visualizations that the app was trying to achieve. 
+
+Knowing this, we both felt and heard from our peers that more information was needed about the Bechdel Test as well as our data. This made a lot of sense to us-- our app was lacking context surrounding our visuals and filtering decisions. In turn, we'll be addressing this topic in our next round of updates. 
+
+In terms of adding more information, one thing that we'll be keeping on the wishlist is adding more movie metadata to the hover boxes. We had some technical trouble with adding line breaks in the hover boxes, and given our time constraints this is more of a 'nice to have', rather than a structural piece we need.
 
 Most peers suggested changing tab names, increasing plot sizes as well as changing the second plot to a side-by-side bar plot for eaiser comparisons. The side-by-side histograms were just not doing our comparison justice. Others also suggested changes to the text on our graphs and adding different colours. These changes all made a lot of sense to us and we'll be including them in our upcoming updates. The only thing we'll be adding the wishlist from the suggestions above is using a `ggtheme`. We'd like to explore adding a dark theme to emulate a cinema experience, but due to time constraints, we'll leave this on the wishlist for now and in lieu, we'll stick with an `RColorBrewer` palette.
 

@@ -32,21 +32,18 @@ ui <-
                      sliderInput("scoreInput1", 
                                  "Average Rotten Tomatoes Score:",
                                  min = 0, max = 100, value = c(0, 100)),
-                     br(),
-                     checkboxGroupInput("pfCheckBox", "Filter by Bechdel Test:",
-                                        c("Pass" = "boxPass",
-                                          "Fail" = "boxFail"))
-                   ),
-                   column(5,
-                  
                      h4(textOutput("summaryText1.1")),
-                     br(),
                      h5(textOutput("summaryText1.2")),
-                     br(),
-                     downloadButton("download1", "Download Results")
+                     br()
+                     ),
+                   column(3,
+                          checkboxGroupInput("pfCheckBox", "Filter by Bechdel Test:",
+                                             c("Pass" = "boxPass",
+                                               "Fail" = "boxFail")),
+                          downloadButton("download1", "Download Results")
                    ),
                    
-                   column(3,
+                   column(5,
                      span("The Bechdel Test is a way to measure the representation of women in media. Learn more about the test ", a(href = "https://bechdeltest.com/", "here.")),
                      br(), br(),
                      span("Data sources:", 
@@ -67,17 +64,33 @@ ui <-
       
       #Second Tab & Plot    
       tabPanel("Grades by Release Year",
-               sidebarLayout(
-                 sidebarPanel(
-                   h4(textOutput("q2")),
-                   br(),
-                   sliderInput("scoreInput2",
-                               "Average Rotten Tomatoes Score:",
-                               min = 0, max = 100, value = c(0,100)),
-                   downloadButton("download2", "Download Results")),
-                 
-                 mainPanel(
-                   plotOutput("plot2")))),
+               plotOutput("plot2"), 
+               
+               wellPanel(
+                 fluidRow(
+                   column(4, sliderInput("scoreInput2",
+                            "Average Rotten Tomatoes Score:",
+                            min = 0, max = 100, value = c(0,100))
+                          ), 
+                   column(4,
+                          span("By creating a histogram, we can see how time affects the number of movies that pass or fail the Bechdel Test."),
+                          br(), br(),
+                          downloadButton("download2", "Download Results")
+                          ),
+                   column(4,
+                          span("Data sources:", 
+                               tags$a("Movies Dataset by Dr. Çetinkaya-Rundel",
+                                      href = "http://www2.stat.duke.edu/~mc301/data/movies.html"),
+                               " and the ",
+                               tags$a("Bechdel Test Movie List",
+                                      href = "https://bechdeltest.com/")
+                          ),
+                          br(), br(),
+                          span("Created by", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "Alex Pak and Jes Simkin")),
+                          br(),
+                          span("Code", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "on GitHub"))
+                          ))
+               )),
       
       #Third Tab & Plot  
       tabPanel("Grades by Genre",
@@ -86,19 +99,33 @@ ui <-
                plotOutput("plot3"),
                
                wellPanel(fluidRow(
-                 column( 4, uiOutput("typeSelectOutput")), 
-                 column( 4, checkboxGroupInput("pfCheckBox2", "Filter by Bechdel Test:",
+                 
+                 column(4, 
+                        uiOutput("typeSelectOutput")
+                        ),
+                 column(3, 
+                         checkboxGroupInput("pfCheckBox2", "Filter by Bechdel Test:",
                                             c("Pass" = "boxPass2",
-                                              "Fail" = "boxFail2"))
-                 ),
-                 column( 4, 
-                         downloadButton("download3", "Download Results"))
+                                              "Fail" = "boxFail2")),
+                        downloadButton("download3", "Download Results")
+                         ), 
+                 column(5,
+                        span("Using a categorical plot, we can visually compare genres and determine if genre has an effect on passing or failing the Bechdel Test."),
+                        br(), br(),
+                        span("Data sources:", 
+                             tags$a("Movies Dataset by Dr. Çetinkaya-Rundel",
+                                    href = "http://www2.stat.duke.edu/~mc301/data/movies.html"),
+                             " and the ",
+                             tags$a("Bechdel Test Movie List",
+                                    href = "https://bechdeltest.com/")
+                        ),
+                        br(), br(),
+                        span("Created by", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "Alex Pak and Jes Simkin")),
+                        br(),
+                        span("Code", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "on GitHub"))
+                 )
                )))
     ))
-
-
-
-
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
@@ -125,7 +152,7 @@ server <- function(input, output) {
         scale_color_manual(values = rev(brewer.pal(n=3, "Set2")))+
         theme(
           text = element_text(family = ""),
-          plot.title = element_text(hjust = 0.5, face = 'bold', size = 17) 
+          plot.title = element_text(hjust = 0.5, face = 'bold', size = 13) 
         )
       
       
@@ -150,9 +177,7 @@ server <- function(input, output) {
         scale_color_manual(values = rev(brewer.pal(n=3, "Set2")))+
         theme(
           text = element_text(family = ""),
-          plot.title = element_text(hjust = 0.5, face = 'bold', size = 17) 
-        )
-      
+          plot.title = element_text(hjust = 0.5, face = 'bold', size = 13))
       
       p2 <- p2 + geom_point_interactive(aes(tooltip = htmlEscape(paste0(m_title, ", ", thtr_rel_year), TRUE)))
       
@@ -174,9 +199,7 @@ server <- function(input, output) {
         guides(alpha=FALSE)+
         theme(
           text = element_text(family = ""),
-          plot.title = element_text(hjust = 0.5, face = 'bold', size = 17) 
-        )
-      
+          plot.title = element_text(hjust = 0.5, face = 'bold', size = 13))
       
       p3 <- p3 + geom_point_interactive(aes(tooltip = htmlEscape(paste0(m_title, ", ", thtr_rel_year), TRUE)))
       
@@ -238,12 +261,15 @@ server <- function(input, output) {
     melt(filtered_data2()) %>%
       ggplot(aes(value, fill=bechdel)) +
       geom_histogram(bins=10, position = 'dodge') +
+      ggtitle("How Many Movies Pass the Bechdel Test per Year?")+
       ylim(0,25) +
-      xlab("US Theatre Rele56ase Year")+
+      xlab("US Theatre Release Year")+
       ylab("Count") +
       labs(fill="Bechdel Test \n Grade")+
-      scale_fill_manual(values = rev(brewer.pal(n=3, "Set2")))
-    
+      scale_fill_manual(values = rev(brewer.pal(n=3, "Set2"))) + 
+      theme(
+        plot.title = element_text(hjust = 0.5, face = 'bold', size = 17) 
+      )
   })
   
   #Plot 3
@@ -263,7 +289,7 @@ server <- function(input, output) {
       
       filtered_data3() %>%
         ggplot(aes(genre, avg_score, colour=bechdel)) +
-        geom_jitter(position=position_jitterdodge() ) +
+        geom_jitter(position=position_jitterdodge(seed = 100) ) +
         
         ylim(0,100) +
         xlab("Genre")+
@@ -283,7 +309,7 @@ server <- function(input, output) {
       
       filtered_data3() %>%
         ggplot(aes(genre, avg_score, colour=bechdel, alpha = bechdel)) +
-        geom_jitter(position=position_jitterdodge() ) +
+        geom_jitter(position=position_jitterdodge(seed = 100) ) +
         
         scale_alpha_discrete(range=c(0.10, 1)) +
         ylim(0,100) +
@@ -305,7 +331,7 @@ server <- function(input, output) {
       
       filtered_data3() %>%
         ggplot(aes(genre, avg_score, colour=bechdel, alpha = bechdel)) +
-        geom_jitter(position=position_jitterdodge() ) +
+        geom_jitter(position=position_jitterdodge(seed = 100) ) +
         
         scale_alpha_discrete(range=c(1, 0.10)) +
         ylim(0,100) +
