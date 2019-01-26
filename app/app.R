@@ -75,7 +75,7 @@ ui <-
                             min = 0, max = 100, value = c(0,100))
                           ), 
                    column(4,
-                          span("By creating a histogram, we can see how time affects the number of movies that pass or fail the Bechdel Test."),
+                          span("By creating a histogram, we can see if there is a relationship between the number of movies that pass or fail the Bechdel Test."),
                           br(), br(),
                           downloadButton("download2", "Download Results")
                           ),
@@ -112,7 +112,7 @@ ui <-
                         downloadButton("download3", "Download Results")
                          ), 
                  column(5,
-                        span("Using a categorical plot, we can visually compare genres and determine if genre has an effect on passing or failing the Bechdel Test."),
+                        span("Using a categorical plot, we can visually compare genres and their relationship with the Bechdel Test."),
                         br(), br(),
                         span("Data sources:", 
                              tags$a("Movies Dataset by Dr. Çetinkaya-Rundel",
