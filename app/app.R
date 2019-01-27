@@ -11,9 +11,12 @@ data <- read.csv("https://raw.githubusercontent.com/jessimk/DSCI-532_Alex-Jesica
 #setting hover css options
 tooltip_css <- "font-style:italic;opacity:0.6;color:white;padding:6px;border-radius:5px;"
 
-
 ui <- 
   fluidPage(
+    
+    tags$head(
+      tags$style(type="text/css", "text {font-family: sans-serif}")
+    ),
     
     titlePanel("Exploring the Bechdel Test & Movies 🎥"),
     
@@ -44,7 +47,7 @@ ui <-
                    ),
                    
                    column(5,
-                     span("The Bechdel Test is a way to measure the representation of women in media. Learn more about the test and how movies are graded ", a(href = "https://bechdeltest.com/", "here.")),
+                     span("The Bechdel Test is a way to measure the representation of women in media. Learn more about the Bechdel Test and how movies are graded ", a(href = "https://bechdeltest.com/", "here.")),
                      br(),br(), 
                      span("We have averaged Rotten Tomatoes audience and critic scores. Learn more about Rotten Tomatoes scores", a(href = "https://www.rottentomatoes.com/about", "here.")),
                      br(),br(),
@@ -75,7 +78,7 @@ ui <-
                             min = 0, max = 100, value = c(0,100))
                           ), 
                    column(4,
-                          span("By creating a histogram, we can see if there is a relationship between the number of movies that pass or fail the Bechdel Test."),
+                          span("In this histogram we can explore how movies pass or fail the Bechdel Test over time."),
                           br(), br(),
                           downloadButton("download2", "Download Results")
                           ),
@@ -112,7 +115,7 @@ ui <-
                         downloadButton("download3", "Download Results")
                          ), 
                  column(5,
-                        span("Using a categorical plot, we can visually compare genres and their relationship with the Bechdel Test."),
+                        span("In this categorical plot, we can visually compare movie genres and how they fare on the Bechdel Test."),
                         br(), br(),
                         span("Data sources:", 
                              tags$a("Movies Dataset by Dr. Çetinkaya-Rundel",
