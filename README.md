@@ -22,3 +22,6 @@ In this directory you'll find:
 
 ## <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>
 - Code of Conduct can be found <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test/blob/master/CODE_OF_CONDUCT.md">here</a>
+
+## Milestone 3: Feedback Session
+- https://github.com/UBC-MDS/Vancouver-Property-Value-Analysis/issues/19
