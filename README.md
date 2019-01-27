@@ -25,3 +25,5 @@ In this directory you'll find:
 
 ## Milestone 3: Feedback Session
 - https://github.com/UBC-MDS/Vancouver-Property-Value-Analysis/issues/19
+- https://github.com/UBC-MDS/DSCI-532_Linyang-Alex/issues/25
+- https://github.com/UBC-MDS/DSCI_532_Arzan_Brenden/issues/11
