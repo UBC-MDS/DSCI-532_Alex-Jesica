@@ -6,7 +6,7 @@ In this directory you'll find:
 
 - <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test/blob/master/docs/Proposal.md">Milestone 1: Proposal 🍿</a>
 - <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test/blob/master/docs/Purpose.md">Milestone 2: Purpose & Function</a>
-- <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test/blob/master/docs/Reflection.md">Milestone 3: Purpose & Function</a>
+- <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test/blob/master/docs/Reflection.md">Milestone 3: Reflection</a>
 
 ## <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica/tree/master/data">Data</a>
 
