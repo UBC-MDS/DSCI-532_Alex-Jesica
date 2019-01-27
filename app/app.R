@@ -11,7 +11,6 @@ data <- read.csv("https://raw.githubusercontent.com/jessimk/DSCI-532_Alex-Jesica
 #setting hover css options
 tooltip_css <- "font-style:italic;opacity:0.6;color:white;padding:6px;border-radius:5px;"
 
-
 ui <- 
   fluidPage(
     
