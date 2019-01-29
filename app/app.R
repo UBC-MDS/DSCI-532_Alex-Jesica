@@ -19,7 +19,7 @@ ui <-
       tags$style(type="text/css", "text {font-family: sans-serif}")
     ),
     
-    titlePanel("Exploring the Bechdel Test & Movies 🎥"),
+    titlePanel("Exploring the Bechdel Test & Movies"),
     
     tabsetPanel(
       
@@ -40,17 +40,17 @@ ui <-
                      h5(textOutput("summaryText1.2")),
                      br()
                      ),
-                   column(3,
+                   column(2,
                           checkboxGroupInput("pfCheckBox", "Filter by Bechdel Test:",
                                              c("Pass" = "boxPass",
                                                "Fail" = "boxFail")),
                           downloadButton("download1", "Download Results")
                    ),
                    
-                   column(5,
+                   column(6,
                      span("The Bechdel Test is a way to measure the representation of women in media. Learn more about the Bechdel Test and how movies are graded ", a(href = "https://bechdeltest.com/", "here.")),
                      br(),br(), 
-                     span("We have averaged Rotten Tomatoes audience and critic scores. Learn more about Rotten Tomatoes scores", a(href = "https://www.rottentomatoes.com/about", "here.")),
+                     span("We have averaged Rotten Tomatoes audience and critic scores. Learn about Rotten Tomatoes scores", a(href = "https://www.rottentomatoes.com/about", "here.")),
                      br(),br(),
                      span("Data sources:", 
                           tags$a("Movies Dataset by Dr. Çetinkaya-Rundel",
@@ -60,9 +60,8 @@ ui <-
                                  href = "https://bechdeltest.com/")
                           ),
                      br(),
-                     span("App by", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "Alex Pak and Jes Simkin")),
-                     br(),
-                     span("Code", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "on GitHub 🍿"))
+                     span("App by", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "Alex Pak and Jes Simkin || "),
+                          "Code", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "on GitHub 🍿"))
                    ))
                  
                  )),
@@ -78,12 +77,12 @@ ui <-
                             "Average Rotten Tomatoes Score:",
                             min = 0, max = 100, value = c(0,100))
                           ), 
-                   column(4,
+                   column(3,
                           span("In this histogram we can explore how movies pass or fail the Bechdel Test over time."),
                           br(), br(),
                           downloadButton("download2", "Download Results")
                           ),
-                   column(4,
+                   column(5,
                           span("Data sources:", 
                                tags$a("Movies Dataset by Dr. Çetinkaya-Rundel",
                                       href = "http://www2.stat.duke.edu/~mc301/data/movies.html"),
@@ -92,9 +91,8 @@ ui <-
                                       href = "https://bechdeltest.com/")
                           ),
                           br(), br(),
-                          span("Created by", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "Alex Pak and Jes Simkin")),
-                          br(),
-                          span("Code", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "on GitHub 🍿"))
+                          span("App by", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "Alex Pak and Jes Simkin || "), 
+                               "Code", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "on GitHub 🍿"))
                           ))
                )),
       
@@ -109,13 +107,13 @@ ui <-
                  column(4, 
                         uiOutput("typeSelectOutput")
                         ),
-                 column(3, 
+                 column(2, 
                          checkboxGroupInput("pfCheckBox2", "Filter by Bechdel Test:",
                                             c("Pass" = "boxPass2",
                                               "Fail" = "boxFail2")),
                         downloadButton("download3", "Download Results")
                          ), 
-                 column(5,
+                 column(6,
                         span("In this categorical plot, we can visually compare movie genres and how they fare on the Bechdel Test."),
                         br(), br(),
                         span("Data sources:", 
@@ -126,9 +124,8 @@ ui <-
                                     href = "https://bechdeltest.com/")
                         ),
                         br(), br(),
-                        span("Created by", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "Alex Pak and Jes Simkin")),
-                        br(),
-                        span("Code", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "on GitHub 🍿"))
+                        span("App by", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "Alex Pak and Jes Simkin || "),
+                             "Code", a(href = "https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test", "on GitHub 🍿"))
                  )
                )))
     ))
@@ -155,14 +152,14 @@ server <- function(input, output) {
         xlab("US Theatre Release Year")+
         ylab("Average Rotten Tomatoes Score")+
         labs(colour="Bechdel Test \n Grade", 
-             subtitle= '...and are they rated better?')+
+             subtitle= '...and are they better movies?')+
         scale_color_manual(values = rev(brewer.pal(n=3, "Set2")))+
         theme(
           text = element_text(family = ""),
           plot.title = element_text(hjust = 0.5, face = 'bold', size = 13, colour = 'white'),
           plot.subtitle = element_text(hjust = 0.2, face = 'bold', size = 10, colour = '#868B95'),
-          panel.background = element_rect(fill = 'transparent'),#rgb(24, 26, 30, 100, maxColorValue = 100)),
-          plot.background = element_rect(fill = 'transparent', color = 'transparent'), #rgb(24, 26, 30, 100, maxColorValue = 100))
+          panel.background = element_rect(fill = 'transparent'),
+          plot.background = element_rect(fill = 'transparent', color = 'transparent'), 
           panel.border = element_blank(),
           axis.title = element_text(colour = "white"),
           axis.text = element_text(color = '#868B95'),
@@ -174,7 +171,7 @@ server <- function(input, output) {
           legend.title = element_text(color = 'white')
         )
       
-      # (p2 <- p + theme(panel.background = element_rect(fill = grDevices::rgb(0, 0, 100, 60, maxColorValue = 100))))
+      
       
       
       p1 <- p1 + geom_point_interactive(aes(tooltip = htmlEscape(paste0(m_title, ", ", thtr_rel_year), TRUE)))
@@ -194,15 +191,15 @@ server <- function(input, output) {
         xlab("US Theatre Release Year")+
         ylab("Average Rotten Tomatoes Score")+
         labs(colour="Bechdel Test \n Grade", 
-             subtitle = '...and are they rated better?')+
+             subtitle= '...and are they better movies?')+
         guides(alpha=FALSE)+
         scale_color_manual(values = rev(brewer.pal(n=3, "Set2")))+
         theme(
           text = element_text(family = ""),
           plot.title = element_text(hjust = 0.5, face = 'bold', size = 13, color = 'white'), 
           plot.subtitle = element_text(hjust = 0.2, face = 'bold', size = 10, colour = '#868B95'),
-          panel.background = element_rect(fill = 'transparent'),#rgb(24, 26, 30, 100, maxColorValue = 100)),
-          plot.background = element_rect(fill = 'transparent', color = 'transparent'), #rgb(24, 26, 30, 100, maxColorValue = 100))
+          panel.background = element_rect(fill = 'transparent'),
+          plot.background = element_rect(fill = 'transparent', color = 'transparent'), 
           panel.border = element_blank(),
           axis.title = element_text(colour = "white"),
           axis.text = element_text(color = '#868B95'),
@@ -230,15 +227,15 @@ server <- function(input, output) {
         xlab("US Theatre Release Year")+
         ylab("Average Rotten Tomatoes Score") +
         labs(colour="Bechdel Test \n Grade",
-             subtitle = '...and are they rated better?')+
+             subtitle= '...and are they better movies?')+
         scale_color_manual(values = rev(brewer.pal(n=3, "Set2")))+
         guides(alpha=FALSE)+
         theme(
           text = element_text(family = ""),
           plot.title = element_text(hjust = 0.5, face = 'bold', size = 13, color = 'white'), 
           plot.subtitle = element_text(hjust = 0.2, face = 'bold', size = 10, colour = '#868B95'),
-          panel.background = element_rect(fill = 'transparent'),#rgb(24, 26, 30, 100, maxColorValue = 100)),
-          plot.background = element_rect(fill = 'transparent', color = 'transparent'), #rgb(24, 26, 30, 100, maxColorValue = 100))
+          panel.background = element_rect(fill = 'transparent'),
+          plot.background = element_rect(fill = 'transparent', color = 'transparent'), 
           panel.border = element_blank(),
           axis.title = element_text(colour = "white"),
           axis.text = element_text(color = '#868B95'),
@@ -258,11 +255,6 @@ server <- function(input, output) {
     }
     
   })
-  
-  output$q2 <- renderText({
-    "How many movies pass the Bechdel Test per year? Are they any good?"
-  })
-
   
   output$summaryText1.1 <- renderText({
     movies1 <- nrow(filtered_data1())
@@ -314,7 +306,7 @@ server <- function(input, output) {
       xlab("US Theatre Release Year")+
       ylab("Count") +
       labs(fill="Bechdel Test \n Grade", 
-           subtitle = '...and does rating affect the distribution?')+
+           subtitle = '...and does score matter?')+
       scale_fill_manual(values = rev(brewer.pal(n=3, "Set2"))) + 
       theme(
         text = element_text(family = ""),
