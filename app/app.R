@@ -4,6 +4,7 @@ library(ggiraph)
 library(htmltools)
 library(reshape2)
 library(RColorBrewer)
+library(shinythemes)
 
 #loading data
 data <- read.csv("https://raw.githubusercontent.com/jessimk/DSCI-532_Alex-Jesica/master/data/movies_rt_bechdel.csv")
@@ -12,7 +13,7 @@ data <- read.csv("https://raw.githubusercontent.com/jessimk/DSCI-532_Alex-Jesica
 tooltip_css <- "font-style:italic;opacity:0.6;color:white;padding:6px;border-radius:5px;"
 
 ui <- 
-  fluidPage(
+  fluidPage(theme = shinytheme('slate'),
     
     tags$head(
       tags$style(type="text/css", "text {font-family: sans-serif}")
@@ -150,15 +151,30 @@ server <- function(input, output) {
         ggplot(aes(thtr_rel_year, avg_score, colour=bechdel)) +
         geom_point() +
         ylim(0,100) +
-        ggtitle("Over time, do more and better movies pass the Bechdel Test?")+
+        ggtitle("Over time, do more movies pass the Bechdel Test?")+
         xlab("US Theatre Release Year")+
         ylab("Average Rotten Tomatoes Score")+
-        labs(colour="Bechdel Test \n Grade")+
+        labs(colour="Bechdel Test \n Grade", 
+             subtitle= '...and are they rated better?')+
         scale_color_manual(values = rev(brewer.pal(n=3, "Set2")))+
         theme(
           text = element_text(family = ""),
-          plot.title = element_text(hjust = 0.5, face = 'bold', size = 13) 
+          plot.title = element_text(hjust = 0.5, face = 'bold', size = 13, colour = 'white'),
+          plot.subtitle = element_text(hjust = 0.2, face = 'bold', size = 10, colour = '#868B95'),
+          panel.background = element_rect(fill = 'transparent'),#rgb(24, 26, 30, 100, maxColorValue = 100)),
+          plot.background = element_rect(fill = 'transparent', color = 'transparent'), #rgb(24, 26, 30, 100, maxColorValue = 100))
+          panel.border = element_blank(),
+          axis.title = element_text(colour = "white"),
+          axis.text = element_text(color = '#868B95'),
+          panel.grid.major = element_line(colour = 'transparent'), 
+          panel.grid.minor = element_line(colour = '#868B95'), 
+          legend.background = element_rect(fill = '#272A2F', color = '#272A2F'),
+          legend.key = element_rect(fill = '#272A2F', color = '#272A2F'), 
+          legend.text = element_text(color = '#868B95'), 
+          legend.title = element_text(color = 'white')
         )
+      
+      # (p2 <- p + theme(panel.background = element_rect(fill = grDevices::rgb(0, 0, 100, 60, maxColorValue = 100))))
       
       
       p1 <- p1 + geom_point_interactive(aes(tooltip = htmlEscape(paste0(m_title, ", ", thtr_rel_year), TRUE)))
@@ -174,15 +190,29 @@ server <- function(input, output) {
         geom_point() +
         ylim(0,100) +
         scale_alpha_discrete(range=c(0.10, 1)) +
-        ggtitle("Over time, do more and better movies pass the Bechdel Test?")+
+        ggtitle("Over time, do more movies pass the Bechdel Test?")+
         xlab("US Theatre Release Year")+
         ylab("Average Rotten Tomatoes Score")+
-        labs(colour="Bechdel Test \n Grade")+
+        labs(colour="Bechdel Test \n Grade", 
+             subtitle = '...and are they rated better?')+
         guides(alpha=FALSE)+
         scale_color_manual(values = rev(brewer.pal(n=3, "Set2")))+
         theme(
           text = element_text(family = ""),
-          plot.title = element_text(hjust = 0.5, face = 'bold', size = 13))
+          plot.title = element_text(hjust = 0.5, face = 'bold', size = 13, color = 'white'), 
+          plot.subtitle = element_text(hjust = 0.2, face = 'bold', size = 10, colour = '#868B95'),
+          panel.background = element_rect(fill = 'transparent'),#rgb(24, 26, 30, 100, maxColorValue = 100)),
+          plot.background = element_rect(fill = 'transparent', color = 'transparent'), #rgb(24, 26, 30, 100, maxColorValue = 100))
+          panel.border = element_blank(),
+          axis.title = element_text(colour = "white"),
+          axis.text = element_text(color = '#868B95'),
+          panel.grid.major = element_line(colour = 'transparent'), 
+          panel.grid.minor = element_line(colour = '#868B95'), 
+          legend.background = element_rect(fill = '#272A2F', color = '#272A2F'),
+          legend.key = element_rect(fill = '#272A2F', color = '#272A2F'), 
+          legend.text = element_text(color = '#868B95'), 
+          legend.title = element_text(color = 'white')
+          )
       
       p2 <- p2 + geom_point_interactive(aes(tooltip = htmlEscape(paste0(m_title, ", ", thtr_rel_year), TRUE)))
       
@@ -196,15 +226,28 @@ server <- function(input, output) {
         geom_point() +
         ylim(0,100) +
         scale_alpha_discrete(range=c(1, 0.10)) + 
-        ggtitle("Over time, do more and better movies pass the Bechdel Test?")+
+        ggtitle("Over time, do more movies pass the Bechdel Test?")+
         xlab("US Theatre Release Year")+
         ylab("Average Rotten Tomatoes Score") +
-        labs(colour="Bechdel Test \n Grade")+
+        labs(colour="Bechdel Test \n Grade",
+             subtitle = '...and are they rated better?')+
         scale_color_manual(values = rev(brewer.pal(n=3, "Set2")))+
         guides(alpha=FALSE)+
         theme(
           text = element_text(family = ""),
-          plot.title = element_text(hjust = 0.5, face = 'bold', size = 13))
+          plot.title = element_text(hjust = 0.5, face = 'bold', size = 13, color = 'white'), 
+          plot.subtitle = element_text(hjust = 0.2, face = 'bold', size = 10, colour = '#868B95'),
+          panel.background = element_rect(fill = 'transparent'),#rgb(24, 26, 30, 100, maxColorValue = 100)),
+          plot.background = element_rect(fill = 'transparent', color = 'transparent'), #rgb(24, 26, 30, 100, maxColorValue = 100))
+          panel.border = element_blank(),
+          axis.title = element_text(colour = "white"),
+          axis.text = element_text(color = '#868B95'),
+          panel.grid.major = element_line(colour = 'transparent'), 
+          panel.grid.minor = element_line(colour = '#868B95'), 
+          legend.background = element_rect(fill = '#272A2F', color = '#272A2F'),
+          legend.key = element_rect(fill = '#272A2F', color = '#272A2F'), 
+          legend.text = element_text(color = '#868B95'), 
+          legend.title = element_text(color = 'white'))
       
       p3 <- p3 + geom_point_interactive(aes(tooltip = htmlEscape(paste0(m_title, ", ", thtr_rel_year), TRUE)))
       
@@ -270,15 +313,25 @@ server <- function(input, output) {
       ylim(0,25) +
       xlab("US Theatre Release Year")+
       ylab("Count") +
-      labs(fill="Bechdel Test \n Grade")+
+      labs(fill="Bechdel Test \n Grade", 
+           subtitle = '...and does rating affect the distribution?')+
       scale_fill_manual(values = rev(brewer.pal(n=3, "Set2"))) + 
       theme(
         text = element_text(family = ""),
-        plot.title = element_text(hjust = 0.5, face = 'bold', size = 17),
-        axis.text = element_text(size = 14),
-        axis.title = element_text(size = 14),
-        legend.text = element_text(size = 12),
-        legend.title = element_text(size = 14)) 
+        plot.title = element_text(hjust = 0.5, face = 'bold', size = 17, colour = 'white'),
+        plot.subtitle = element_text(hjust = 0.37, face = 'bold', size = 13, colour = '#868B95'),
+        panel.background = element_rect(fill = '#272A2F'),
+        plot.background = element_rect(fill = '#272A2F', color = '#272A2F'), 
+        panel.border = element_blank(),
+        axis.title = element_text(size = 14, colour = "white"),
+        axis.text = element_text(size = 14, color = '#868B95'),
+        panel.grid.major = element_line(colour = 'transparent'), 
+        panel.grid.minor = element_line(colour = '#868B95'), 
+        legend.background = element_rect(fill = '#272A2F', color = '#272A2F'),
+        legend.key = element_rect(fill = '#272A2F', color = '#272A2F'), 
+        legend.text = element_text(size = 12, color = '#868B95'), 
+        legend.title = element_text(size = 14, color = 'white')
+        ) 
   })
   
   #Plot 3
@@ -308,11 +361,20 @@ server <- function(input, output) {
         scale_color_manual(values = rev(brewer.pal(n=3, "Set2")))+
         theme(
           text = element_text(family = ""),
-          plot.title = element_text(hjust = 0.5, face = 'bold', size = 17),
-          axis.text = element_text(size = 14),
-          axis.title = element_text(size = 14),
-          legend.text = element_text(size = 12),
-          legend.title = element_text(size = 14)) 
+          plot.title = element_text(hjust = 0.5, face = 'bold', size = 17, colour = 'white'),
+          plot.subtitle = element_text(hjust = 0.2, face = 'bold', size = 10, colour = '#868B95'),
+          panel.background = element_rect(fill = '#272A2F'),
+          plot.background = element_rect(fill = '#272A2F', color = '#272A2F'), 
+          panel.border = element_blank(),
+          axis.title = element_text(size = 14, colour = "white"),
+          axis.text = element_text(size = 14, color = '#868B95'),
+          panel.grid.major = element_line(colour = 'transparent'), 
+          panel.grid.minor = element_line(colour = '#868B95'), 
+          legend.background = element_rect(fill = '#272A2F', color = '#272A2F'),
+          legend.key = element_rect(fill = '#272A2F', color = '#272A2F'), 
+          legend.text = element_text(size = 12, color = '#868B95'), 
+          legend.title = element_text(size = 13, color = 'white')
+          ) 
       
       
       
@@ -332,11 +394,20 @@ server <- function(input, output) {
         ggtitle("In terms of passing the Bechdel Test, does genre matter?")+
         theme(
           text = element_text(family = ""),
-          plot.title = element_text(hjust = 0.5, face = 'bold', size = 17),
-          axis.text = element_text(size = 14),
-          axis.title = element_text(size = 14),
-          legend.text = element_text(size = 12),
-          legend.title = element_text(size = 14)) 
+          plot.title = element_text(hjust = 0.5, face = 'bold', size = 17, color = 'white'),
+          plot.subtitle = element_text(hjust = 0.2, face = 'bold', size = 10, colour = '#868B95'),
+          panel.background = element_rect(fill = '#272A2F'),
+          plot.background = element_rect(fill = '#272A2F', color = '#272A2F'), 
+          panel.border = element_blank(),
+          axis.title = element_text(size = 14, colour = "white"),
+          axis.text = element_text(size = 14, color = '#868B95'),
+          panel.grid.major = element_line(colour = 'transparent'), 
+          panel.grid.minor = element_line(colour = '#868B95'), 
+          legend.background = element_rect(fill = '#272A2F', color = '#272A2F'),
+          legend.key = element_rect(fill = '#272A2F', color = '#272A2F'), 
+          legend.text = element_text(size = 12, color = '#868B95'), 
+          legend.title = element_text(size = 13, color = 'white')
+        ) 
       
       
     } else {
@@ -352,13 +423,23 @@ server <- function(input, output) {
         labs(colour="Bechdel Test \nGrade") +
         scale_color_manual(values = rev(brewer.pal(n=3, "Set2")))+
         guides(alpha=FALSE) +
+        ggtitle("In terms of passing the Bechdel Test, does genre matter?")+
         theme(
           text = element_text(family = ""),
-          plot.title = element_text(hjust = 0.5, face = 'bold', size = 17),
-          axis.text = element_text(size = 14),
-          axis.title = element_text(size = 14),
-          legend.text = element_text(size = 12),
-          legend.title = element_text(size = 14)) 
+          plot.title = element_text(hjust = 0.5, face = 'bold', size = 17, color = 'white'),
+          plot.subtitle = element_text(hjust = 0.2, face = 'bold', size = 10, colour = '#868B95'),
+          panel.background = element_rect(fill = '#272A2F'),
+          plot.background = element_rect(fill = '#272A2F', color = '#272A2F'), 
+          panel.border = element_blank(),
+          axis.title = element_text(size = 14, colour = "white"),
+          axis.text = element_text(size = 14, color = '#868B95'),
+          panel.grid.major = element_line(colour = 'transparent'), 
+          panel.grid.minor = element_line(colour = '#868B95'), 
+          legend.background = element_rect(fill = '#272A2F', color = '#272A2F'),
+          legend.key = element_rect(fill = '#272A2F', color = '#272A2F'), 
+          legend.text = element_text(size = 12, color = '#868B95'), 
+          legend.title = element_text(size = 13, color = 'white')
+        ) 
           
           
         }
