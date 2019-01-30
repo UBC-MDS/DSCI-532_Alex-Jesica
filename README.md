@@ -14,6 +14,7 @@ Authors: <a href="https://github.com/pak-alex">Alex Pak</a>  & <a href="https://
 - <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test/blob/master/docs/Proposal.md">Milestone 1: Proposal 🍿</a>
 - <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test/blob/master/docs/Purpose.md">Milestone 2: Purpose & Function</a>
 - <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test/blob/master/docs/Reflection.md">Milestone 3: Reflection</a>
+- <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test/blob/master/docs/Last_Improvements.md">Milestone 4: Last Improvements</a>
 
 ## <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica/tree/master/data">Data</a>
 
