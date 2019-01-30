@@ -1,6 +1,13 @@
-# DSCI-532_Alex-Jesica
+# Exploring the Bechdel Test & Movies 🎬
 
-In this directory you'll find:
+Authors: <a href="https://github.com/pak-alex">Alex Pak</a>  & <a href="https://github.com/jessimk">Jes Simkin</a>
+
+#### In this directory you'll find:
+
+
+## <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica/tree/master/app">App</a>
+- The app lives online <a href="https://jessimk.shinyapps.io/Exploring_the_Bechdel_Test/"> here </a>
+- Shiny App file `App.r`
 
 ## <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica/tree/master/docs">Documents</a>
 
@@ -15,10 +22,6 @@ In this directory you'll find:
 > Our dataset is a combination of <a href="http://www2.stat.duke.edu/~mc301/data/movies.html">this dataset</a> of randomly selected movies released in the United States between 1972 and 2014, compiled by Dr.Çetinkaya-Rundel and Bechdel Test grades scraped from the Bechdel Test Movie List database with <a href="https://github.com/neokt/women-dialogue-box-office/blob/master/02-bechdel-scraping.ipynb">this script</a> written by Ting Neo.
 
 - <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test/blob/master/data/data_wrangling.md"> Data wrangling code is here</a> and the scraped data from bechdeltest.com is <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test/blob/master/data/bechdel_db_scraped.csv">here</a>.
-
-## <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica/tree/master/app">App</a>
-- Shiny App file `App.r`
-- The app lives online <a href="https://jessimk.shinyapps.io/Exploring_the_Bechdel_Test/"> here </a>
 
 ## <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>
 - Code of Conduct can be found <a href="https://github.com/UBC-MDS/DSCI-532_Alex-Jesica_Bechdel-Test/blob/master/CODE_OF_CONDUCT.md">here</a>
